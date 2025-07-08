@@ -50,4 +50,11 @@ export interface Project {
 }
 
 export type ViewMode = 'grid' | 'list';
-export type BoardView = 'kanban' | 'calendar';
+export type BoardView = 'kanban' | 'calendar' | 'gantt' | 'excel';
+
+export interface ExcelData {
+  id: string;
+  name: string;
+  content: string;
+  uploadedAt: string;
+}
