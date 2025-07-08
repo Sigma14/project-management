@@ -43,9 +43,9 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+    <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto transition-colors">
+        <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img
               src={member.avatar || `https://ui-avatars.com/api/?name=${member.name}&size=64`}
@@ -53,14 +53,14 @@ const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
               className="w-16 h-16 rounded-full"
             />
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">{member.name}</h2>
-              <p className="text-gray-600">{member.role}</p>
-              <p className="text-sm text-gray-500">{member.email}</p>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{member.name}</h2>
+              <p className="text-gray-600 dark:text-gray-400">{member.role}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{member.email}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 p-1 rounded"
+            className="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

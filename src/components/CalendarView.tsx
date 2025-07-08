@@ -74,42 +74,42 @@ const CalendarView: React.FC<CalendarViewProps> = ({ tasks, teamMembers, onTaskE
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 transition-colors">
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <h2 className="text-xl font-semibold text-gray-900">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
             {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
           </h2>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => navigateMonth('prev')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-600" />
+            <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
           <button
             onClick={() => setCurrentDate(new Date())}
-            className="px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
             Today
           </button>
           <button
             onClick={() => navigateMonth('next')}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
-            <ChevronRight className="w-5 h-5 text-gray-600" />
+            <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden">
+      <div className="grid grid-cols-7 gap-px bg-gray-200 dark:bg-gray-600 rounded-lg overflow-hidden">
         {/* Day Headers */}
         {dayNames.map(day => (
-          <div key={day} className="bg-gray-50 p-3 text-center">
-            <span className="text-sm font-medium text-gray-700">{day}</span>
+          <div key={day} className="bg-gray-50 dark:bg-gray-700 p-3 text-center">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{day}</span>
           </div>
         ))}
 
@@ -122,14 +122,14 @@ const CalendarView: React.FC<CalendarViewProps> = ({ tasks, teamMembers, onTaskE
             <div
               key={index}
               className={`bg-white p-2 min-h-[120px] ${
-                day ? 'hover:bg-gray-50' : 'bg-gray-100'
-              } ${isToday ? 'ring-2 ring-blue-500' : ''}`}
+                day ? 'dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700' : 'bg-gray-100 dark:bg-gray-600'
+              } ${isToday ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''} transition-colors`}
             >
               {day && (
                 <>
                   <div className="flex items-center justify-between mb-2">
                     <span className={`text-sm font-medium ${
-                      isToday ? 'text-blue-600' : 'text-gray-900'
+                      isToday ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white'
                     }`}>
                       {day.getDate()}
                     </span>
@@ -142,7 +142,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ tasks, teamMembers, onTaskE
                         <div
                           key={task.id}
                           onClick={() => onTaskEdit(task)}
-                          className={`p-1 rounded text-xs cursor-pointer border ${getPriorityColor(task.priority)} hover:shadow-sm transition-shadow`}
+                          className={`p-1 rounded text-xs cursor-pointer border ${getPriorityColor(task.priority)} hover:shadow-sm transition-all`}
                         >
                           <div className="font-medium truncate">{task.title}</div>
                           {assignee && (
@@ -154,7 +154,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ tasks, teamMembers, onTaskE
                       );
                     })}
                     {dayTasks.length > 3 && (
-                      <div className="text-xs text-gray-500 text-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
                         +{dayTasks.length - 3} more
                       </div>
                     )}
@@ -170,15 +170,15 @@ const CalendarView: React.FC<CalendarViewProps> = ({ tasks, teamMembers, onTaskE
       <div className="mt-6 flex items-center gap-6 text-sm">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-red-100 border border-red-200 rounded"></div>
-          <span className="text-gray-600">High Priority</span>
+          <span className="text-gray-600 dark:text-gray-400">High Priority</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-yellow-100 border border-yellow-200 rounded"></div>
-          <span className="text-gray-600">Medium Priority</span>
+          <span className="text-gray-600 dark:text-gray-400">Medium Priority</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-green-100 border border-green-200 rounded"></div>
-          <span className="text-gray-600">Low Priority</span>
+          <span className="text-gray-600 dark:text-gray-400">Low Priority</span>
         </div>
       </div>
     </div>
