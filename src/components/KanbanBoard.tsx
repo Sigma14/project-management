@@ -61,19 +61,19 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
       <div className="h-full">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-gray-900">{projectName} - Calendar View</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{projectName} - Calendar View</h1>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex bg-gray-100 rounded-lg p-1">
+            <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
               <button
                 onClick={() => setBoardView('kanban')}
-                className="px-3 py-1 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-md"
+                className="px-3 py-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md transition-colors"
               >
                 Board
               </button>
               <button
                 onClick={() => setBoardView('calendar')}
-                className="px-3 py-1 text-sm font-medium bg-white text-gray-900 rounded-md shadow-sm"
+                className="px-3 py-1 text-sm font-medium bg-white dark:bg-gray-600 text-gray-900 dark:text-white rounded-md shadow-sm"
               >
                 Calendar
               </button>
@@ -106,30 +106,30 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
     <div className="h-full overflow-hidden">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
-          <h1 className="text-2xl font-bold text-gray-900">{projectName}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{projectName}</h1>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex bg-gray-100 rounded-lg p-1">
+          <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setBoardView('kanban')}
-              className="px-3 py-1 text-sm font-medium bg-white text-gray-900 rounded-md shadow-sm"
+              className="px-3 py-1 text-sm font-medium bg-white dark:bg-gray-600 text-gray-900 dark:text-white rounded-md shadow-sm"
             >
               Board
             </button>
             <button
               onClick={() => setBoardView('calendar')}
-              className="px-3 py-1 text-sm font-medium text-gray-600 hover:text-gray-900 rounded-md"
+              className="px-3 py-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-md transition-colors"
             >
               Calendar
             </button>
           </div>
-          <div className="flex bg-gray-100 rounded-lg p-1">
+          <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setViewMode('grid')}
               className={`flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 viewMode === 'grid' 
-                  ? 'bg-white text-gray-900 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' 
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               <Grid3X3 className="w-4 h-4" />
@@ -139,8 +139,8 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
               onClick={() => setViewMode('list')}
               className={`flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md transition-colors ${
                 viewMode === 'list' 
-                  ? 'bg-white text-gray-900 shadow-sm' 
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm' 
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               <List className="w-4 h-4" />
@@ -158,9 +158,9 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
       </div>
 
       {viewMode === 'list' ? (
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-            <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden transition-colors">
+          <div className="bg-gray-50 dark:bg-gray-700 px-4 py-3 border-b border-gray-200 dark:border-gray-600">
+            <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-700 dark:text-gray-300">
               <div className="col-span-3">Task</div>
               <div className="col-span-2">Priority</div>
               <div className="col-span-2">Assignee</div>
@@ -169,7 +169,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
               <div className="col-span-1">Status</div>
             </div>
           </div>
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-200 dark:divide-gray-700">
             {tasks.map(task => (
               <TaskCard
                 key={task.id}
@@ -186,15 +186,15 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
           {columns.map(column => {
             const columnTasks = getTasksByStatus(column.status);
             return (
-              <div key={column.id} className="bg-gray-50 rounded-lg p-4 h-fit">
+              <div key={column.id} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 h-fit transition-colors">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">{column.title}</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">{column.title}</h3>
                   <div className="flex items-center gap-2">
                     <span
                       className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: column.color }}
                     />
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
                       {columnTasks.length}
                     </span>
                   </div>
@@ -211,7 +211,7 @@ const KanbanBoard: React.FC<KanbanBoardProps> = ({
                     />
                   ))}
                   {columnTasks.length === 0 && (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-gray-500 dark:text-gray-400">
                       <p className="text-sm">No tasks in this column</p>
                     </div>
                   )}

@@ -28,13 +28,13 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
   if (viewMode === 'list') {
     return (
       <div 
-        className="bg-white border border-gray-200 p-4 hover:bg-gray-50 transition-colors cursor-pointer"
+        className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
         onClick={() => onEdit(task)}
       >
         <div className="grid grid-cols-12 gap-4 items-center">
           <div className="col-span-3">
-            <h3 className="font-semibold text-gray-900 truncate">{task.title}</h3>
-            <p className="text-sm text-gray-600 truncate">{task.description}</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white truncate">{task.title}</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">{task.description}</p>
           </div>
           
           <div className="col-span-2">
@@ -51,7 +51,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
                   alt={assignee.name}
                   className="w-5 h-5 rounded-full"
                 />
-                <span className="text-sm text-gray-600 truncate">{assignee.name}</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400 truncate">{assignee.name}</span>
               </div>
             )}
           </div>
@@ -59,23 +59,23 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
           <div className="col-span-2">
             {codeReviewer && (
               <div className="flex items-center gap-1">
-                <Code className="w-4 h-4 text-gray-400" />
-                <span className="text-sm text-gray-600 truncate">{codeReviewer.name}</span>
+                <Code className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                <span className="text-sm text-gray-600 dark:text-gray-400 truncate">{codeReviewer.name}</span>
               </div>
             )}
           </div>
           
           <div className="col-span-2">
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
               <div>Start: {new Date(task.startDate).toLocaleDateString()}</div>
-              <div className={isOverdue ? 'text-red-600' : ''}>
+              <div className={isOverdue ? 'text-red-600 dark:text-red-400' : ''}>
                 Due: {new Date(task.dueDate).toLocaleDateString()}
               </div>
             </div>
           </div>
           
           <div className="col-span-1 flex justify-end">
-            {isOverdue && <AlertCircle className="w-4 h-4 text-red-500" />}
+            {isOverdue && <AlertCircle className="w-4 h-4 text-red-500 dark:text-red-400" />}
           </div>
         </div>
       </div>
@@ -84,24 +84,24 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
 
   return (
     <div 
-      className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md transition-all cursor-pointer"
       onClick={() => onEdit(task)}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
-        <h3 className="font-semibold text-gray-900 line-clamp-2">{task.title}</h3>
+        <h3 className="font-semibold text-gray-900 dark:text-white line-clamp-2">{task.title}</h3>
         <div className="flex items-center gap-1 ml-2">
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(task.priority)}`}>
             {task.priority}
           </span>
           {isOverdue && (
-            <AlertCircle className="w-4 h-4 text-red-500" />
+            <AlertCircle className="w-4 h-4 text-red-500 dark:text-red-400" />
           )}
         </div>
       </div>
 
       {/* Description */}
-      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{task.description}</p>
+      <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 line-clamp-2">{task.description}</p>
 
       {/* Tags */}
       {task.tags.length > 0 && (
@@ -125,7 +125,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
             href={task.googleDocLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm"
+            className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
             <ExternalLink className="w-4 h-4" />
@@ -138,39 +138,39 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, teamMembers, onEdit, viewMode
       <div className="space-y-2 mb-3">
         {assignee && (
           <div className="flex items-center gap-2">
-            <User className="w-4 h-4 text-gray-400" />
+            <User className="w-4 h-4 text-gray-400 dark:text-gray-500" />
             <img
               src={assignee.avatar || `https://ui-avatars.com/api/?name=${assignee.name}&size=20`}
               alt={assignee.name}
               className="w-4 h-4 rounded-full"
             />
-            <span className="text-xs text-gray-600">{assignee.name}</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400">{assignee.name}</span>
           </div>
         )}
         {supervisor && (
           <div className="flex items-center gap-2">
-            <UserCheck className="w-4 h-4 text-gray-400" />
-            <span className="text-xs text-gray-600">{supervisor.name}</span>
+            <UserCheck className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+            <span className="text-xs text-gray-600 dark:text-gray-400">{supervisor.name}</span>
           </div>
         )}
         {codeReviewer && (
           <div className="flex items-center gap-2">
-            <Code className="w-4 h-4 text-gray-400" />
-            <span className="text-xs text-gray-600">{codeReviewer.name}</span>
+            <Code className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+            <span className="text-xs text-gray-600 dark:text-gray-400">{codeReviewer.name}</span>
           </div>
         )}
       </div>
 
       {/* Dates */}
-      <div className="pt-3 border-t border-gray-100">
+      <div className="pt-3 border-t border-gray-100 dark:border-gray-700">
         <div className="grid grid-cols-2 gap-2 text-xs">
           <div>
-            <span className="text-gray-500">Start:</span>
-            <div className="text-gray-700">{new Date(task.startDate).toLocaleDateString()}</div>
+            <span className="text-gray-500 dark:text-gray-400">Start:</span>
+            <div className="text-gray-700 dark:text-gray-300">{new Date(task.startDate).toLocaleDateString()}</div>
           </div>
           <div>
-            <span className="text-gray-500">Due:</span>
-            <div className={isOverdue ? 'text-red-600' : 'text-gray-700'}>
+            <span className="text-gray-500 dark:text-gray-400">Due:</span>
+            <div className={isOverdue ? 'text-red-600 dark:text-red-400' : 'text-gray-700 dark:text-gray-300'}>
               {new Date(task.dueDate).toLocaleDateString()}
             </div>
           </div>

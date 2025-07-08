@@ -165,31 +165,31 @@ Would you like me to dive deeper into any specific area? I can provide detailed 
   };
 
   return (
-    <div className="h-full flex bg-white">
+    <div className="h-full flex bg-white dark:bg-gray-800 transition-colors">
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="border-b border-gray-200 p-6">
+        <div className="border-b border-gray-200 dark:border-gray-700 p-6">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl">
               <Bot className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">AI Project Manager</h2>
-              <p className="text-sm text-gray-600">Your intelligent project management assistant</p>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">AI Project Manager</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Your intelligent project management assistant</p>
             </div>
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="p-6 border-b border-gray-200 bg-gray-50">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">Quick Actions</h3>
+        <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Quick Actions</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {suggestions.map((suggestion, index) => (
               <button
                 key={index}
                 onClick={() => setInput(suggestion.text)}
-                className={`flex items-center gap-3 p-3 text-left border rounded-lg hover:shadow-sm transition-all ${suggestion.color}`}
+                className={`flex items-center gap-3 p-3 text-left border rounded-lg hover:shadow-sm transition-all ${suggestion.color} dark:border-gray-600`}
               >
                 <suggestion.icon className="w-5 h-5" />
                 <span className="text-sm font-medium">{suggestion.text}</span>
@@ -216,20 +216,20 @@ Would you like me to dive deeper into any specific area? I can provide detailed 
                 <div
                   className={`max-w-2xl p-4 rounded-xl ${
                     message.type === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-900'
+                      ? 'bg-blue-600 dark:bg-blue-500 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                   }`}
                 >
                   <div className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</div>
                   <div className={`text-xs mt-2 ${
-                    message.type === 'user' ? 'text-blue-100' : 'text-gray-500'
+                    message.type === 'user' ? 'text-blue-100 dark:text-blue-200' : 'text-gray-500 dark:text-gray-400'
                   }`}>
                     {new Date(message.timestamp).toLocaleTimeString()}
                   </div>
                 </div>
                 {message.type === 'user' && (
-                  <div className="p-2 bg-gray-100 rounded-lg">
-                    <User className="w-5 h-5 text-gray-600" />
+                  <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                    <User className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                   </div>
                 )}
               </div>
@@ -238,7 +238,7 @@ Would you like me to dive deeper into any specific area? I can provide detailed 
         </div>
 
         {/* Input */}
-        <div className="border-t border-gray-200 p-4">
+        <div className="border-t border-gray-200 dark:border-gray-700 p-4">
           <div className="flex gap-3">
             <input
               type="text"
@@ -246,12 +246,12 @@ Would you like me to dive deeper into any specific area? I can provide detailed 
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Ask me about your project..."
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
             <button
               onClick={handleSend}
               disabled={!input.trim()}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
             >
               <Send className="w-5 h-5" />
             </button>
@@ -260,20 +260,20 @@ Would you like me to dive deeper into any specific area? I can provide detailed 
       </div>
 
       {/* Sidebar with Project Metrics */}
-      <div className="w-80 border-l border-gray-200 bg-gray-50 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Insights</h3>
+      <div className="w-80 border-l border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-6 transition-colors">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Project Insights</h3>
         
         <div className="space-y-4">
           {/* Completion Rate */}
-          <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors">
             <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              <span className="font-medium text-gray-900">Completion Rate</span>
+              <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+              <span className="font-medium text-gray-900 dark:text-white">Completion Rate</span>
             </div>
-            <div className="text-2xl font-bold text-green-600">{projectMetrics.completionRate}%</div>
-            <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">{projectMetrics.completionRate}%</div>
+            <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2 mt-2">
               <div
-                className="bg-green-600 h-2 rounded-full transition-all"
+                className="bg-green-600 dark:bg-green-500 h-2 rounded-full transition-all"
                 style={{ width: `${projectMetrics.completionRate}%` }}
               />
             </div>
